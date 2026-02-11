@@ -86,22 +86,51 @@ design:
 Subfields per theme: `page`, `colors`, `typography`, `links`, `header`, `section_titles`, `entries`, `templates`.
 
 ### Page Options
+
+Page settings are nested under `design.page`:
+
+```yaml
+design:
+  theme: classic
+  page:
+    size: a4
+    top_margin: 2cm
+    bottom_margin: 2cm
+    left_margin: 1.5cm
+    right_margin: 1.5cm
+```
+
 `size`: a4, a5, us-letter, us-executive
-`top_margin`, `bottom_margin`, `left_margin`, `right_margin`: e.g. "2cm"
+`top_margin`, `bottom_margin`, `left_margin`, `right_margin`: dimension values
+
+**Dimension format**: Number immediately followed by unit, no space. Valid: `2cm`, `0.7in`, `10pt`. Invalid: `2 cm`, `0.7 in`.
+Supported units: cm, in, pt, mm, ex, em.
 
 ### Colors
-`body`, `name`, `headline`, `connections`, `section_titles`, `links`, `footer`, `top_note`
+
+Colors are nested under `design.colors`:
+
+```yaml
+design:
+  theme: classic
+  colors:
+    name: "004085"
+    section_titles: "004085"
+    links: "004085"
+```
+
+Available color fields: `body`, `name`, `headline`, `connections`, `section_titles`, `links`, `footer`, `top_note`
 
 ### Section Title Types
 `with_partial_line`, `with_full_line`, `without_line`, `moderncv`
 
 ## `locale` Field
 
-Languages: en, da, nl, fr, de, hi, id, it, ja, ko, zh, pt, ru, es, tr
+Languages (use full names, not ISO codes): `english`, `danish`, `dutch`, `french`, `german`, `hindi`, `indonesian`, `italian`, `japanese`, `korean`, `mandarin_chineese`, `portuguese`, `russian`, `spanish`, `turkish`
 
 ```yaml
 locale:
-  language: en
+  language: english
 ```
 
 ## `settings` Field

@@ -35,6 +35,9 @@ Key rules:
 - Text supports markdown: `**bold**`, `*italic*`, `[links](url)`
 - Dates: `"2023"`, `"2023-05"`, or `start_date`/`end_date` with `"present"` for ongoing
 - Choose an appropriate theme: `classic`, `engineeringresumes`, `sb2nov`, `moderncv`, `engineeringclassic`
+- **Locale**: Use full language names, not ISO codes. E.g. `language: english`, not `language: en`. Valid values: `english`, `danish`, `dutch`, `french`, `german`, `hindi`, `indonesian`, `italian`, `japanese`, `korean`, `mandarin_chineese`, `portuguese`, `russian`, `spanish`, `turkish`
+- **Design fields are nested**: Page settings go under `design.page`, colors under `design.colors`, etc. Do NOT use flat field names like `page_size` or `text_alignment` directly under `design`.
+- **Dimensions**: Number immediately followed by unit, no space. Write `2cm`, not `2 cm`. Supported units: cm, in, pt, mm, ex, em.
 
 ### Step 3: Render to PDF
 
