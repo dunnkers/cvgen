@@ -1,0 +1,22 @@
+name: Package Skill
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Package skill
+        working-directory: utils
+        run: uvx --with pyyaml python package_skill.py ../skill ../dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: skill
+          path: dist/*.skill
