@@ -41,11 +41,30 @@ Key rules:
 
 ### Step 3: Render to PDF
 
+#### 3a: Install bundled Typst packages
+
+RenderCV uses Typst internally, which downloads packages from `packages.typst.org` at compile time. In sandboxed environments (e.g. Claude Desktop), this domain is blocked. The required packages are bundled in [typst-packages/](typst-packages/) — **copy them into the Typst cache before rendering.**
+
+```bash
+# Determine cache directory (Linux/sandboxed: ~/.cache, macOS: ~/Library/Caches)
+TYPST_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/typst/packages/preview"
+
+# Copy bundled packages into Typst cache (skip if already present)
+for pkg in rendercv/0.1.0 fontawesome/0.6.0; do
+  if [ ! -d "$TYPST_CACHE/$pkg" ]; then
+    mkdir -p "$TYPST_CACHE/$pkg"
+    cp -r typst-packages/preview/$pkg/* "$TYPST_CACHE/$pkg/"
+  fi
+done
+```
+
+#### 3b: Render
+
 ```bash
 uvx 'rendercv[full]' render <Name>_CV.yaml --output-folder-name <dist>
 ```
 
-... where <dist> is the output directory. This can be `dist/`, for example:
+... where `<dist>` is the output directory. This can be `dist/`, for example:
 
 ```
 $ ls -al dist
@@ -59,7 +78,7 @@ drwxr-xr-x  14 dunnkers  staff      448 Feb 11 19:33 ..
 -rw-r--r--@  1 dunnkers  staff    15888 Jan 28 17:10 John_Doe_CV.typ
 ```
 
-... with the PDF file also there. If rendering fails, read the error message — RenderCV gives precise validation errors with exact locations.
+If rendering fails, read the error message — RenderCV gives precise validation errors with exact locations.
 
 After successful render, inform the user where the PDF is so they can view it.
 
